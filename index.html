@@ -16,7 +16,7 @@
       </h1>
       <form id="investment-form" class="w-full flex">
         <div class="flex flex-col w-full gap-4 px">
-          <div class="flex flex-col w-full px-3">
+          <div class="flex flex-col w-full px-3 h-[4.25rem]">
             <label class="font-bold text-gray-700" for="initial-investment"
               >Initial Investment</label
             >
@@ -35,8 +35,9 @@
                 required
               />
             </div>
+            <span class="text-red-600"></span>
           </div>
-          <div class="flex flex-col w-full px-3">
+          <div class="flex flex-col w-full px-3 h-[4.25rem]">
             <label
               class="font-bold text-gray-700"
               for="additional-contributions"
@@ -54,11 +55,11 @@
                 type="text"
                 placeholder="0,00"
                 id="additional-contributions"
-                
               />
             </div>
+            <span class="text-red-600"></span>
           </div>
-          <div class="flex flex-col w-full px-3">
+          <div class="flex flex-col w-full px-3 h-[4.25rem]">
             <label class="font-bold text-gray-700" for="time-amount"
               >Time</label
             >
@@ -77,8 +78,9 @@
                 <option value="yearly">Yearly</option>
               </select>
             </div>
+            <span class="text-red-600"></span>
           </div>
-          <div class="flex flex-col w-full px-3">
+          <div class="flex flex-col w-full px-3 h-[4.25rem]">
             <label class="font-bold text-gray-700" for="return-rate"
               >Rentability</label
             >
@@ -104,11 +106,13 @@
                 <option value="yearly">Yearly</option>
               </select>
             </div>
+            <span class="text-red-600"></span>
           </div>
-          <div class="flex flex-col w-full px-3">
+          <div class="flex flex-col w-full px-3 h-[4.25rem]">
             <label class="font-bold text-gray-700" for="tax-rate"
               >Tax Over Profit</label
             >
+            <!-- When there's an error this div needs to aquire the class error -->
             <div class="flex gap-0">
               <input
                 class="bg-emerald-200 rounded-l-md px-2 w-1/8 font-bold text-center"
@@ -121,9 +125,11 @@
                 type="text"
                 placeholder="0"
                 id="tax-rate"
+                name="tax-rate"
                 required
               />
             </div>
+            <span class="text-red-600"></span>
           </div>
         </div>
       </form>

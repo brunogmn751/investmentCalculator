@@ -28,8 +28,11 @@ function renderProgression() {
   console.log(returnsArray);
 }
 
+function validateInput()
+
 // calculateBtn.addEventListener("click", renderProgression);
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   renderProgression();
 });
+
