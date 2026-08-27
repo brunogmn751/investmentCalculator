@@ -161,5 +161,5 @@ form.addEventListener("submit", (event) => {
     return;
   }
 
-  renderProgression();
+  // renderProgression();
 });
