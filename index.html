@@ -7,16 +7,16 @@
     <link href="./src/style.css" rel="stylesheet" />
     <script type="module" src="./src/main.js" defer></script>
   </head>
-  <body class="h-dvh grid grid-rows-2 grid-cols-3">
+  <body class="min-h-dvh grid grid-rows-2 grid-cols-3">
     <aside
-      class="row-span-3 bg-emerald-300 flex flex-col justify-around items-center"
+      class="row-span-2 bg-emerald-300 flex flex-col justify-around items-center"
     >
       <h1 class="text-2xl text-center font-bold px-6 py-2">
         Investment Calculator
       </h1>
       <form id="investment-form" class="w-full flex">
         <div class="flex flex-col w-full gap-4 px">
-          <div class="flex flex-col w-full px-3 h-[4.25rem]">
+          <div class="flex flex-col w-full px-3 min-h-[4.25rem]">
             <label class="font-bold text-gray-700" for="initial-investment"
               >Initial Investment</label
             >
@@ -32,12 +32,12 @@
                 type="text"
                 placeholder="0,00"
                 id="initial-investment"
+                name="initial-investment"
                 required
               />
             </div>
-            <span class="text-red-600"></span>
           </div>
-          <div class="flex flex-col w-full px-3 h-[4.25rem]">
+          <div class="flex flex-col w-full px-3 min-h-[4.25rem]">
             <label
               class="font-bold text-gray-700"
               for="additional-contributions"
@@ -55,11 +55,11 @@
                 type="text"
                 placeholder="0,00"
                 id="additional-contributions"
+                name="additional-contributions"
               />
             </div>
-            <span class="text-red-600"></span>
           </div>
-          <div class="flex flex-col w-full px-3 h-[4.25rem]">
+          <div class="flex flex-col w-full px-3 min-h-[4.25rem]">
             <label class="font-bold text-gray-700" for="time-amount"
               >Time</label
             >
@@ -68,6 +68,7 @@
                 class="bg-white w-5/8 rounded-l-md"
                 type="text"
                 id="time-amount"
+                name="time-amount"
                 required
               />
               <select
@@ -78,9 +79,8 @@
                 <option value="yearly">Yearly</option>
               </select>
             </div>
-            <span class="text-red-600"></span>
           </div>
-          <div class="flex flex-col w-full px-3 h-[4.25rem]">
+          <div class="flex flex-col w-full px-3 min-h-[4.25rem]">
             <label class="font-bold text-gray-700" for="return-rate"
               >Rentability</label
             >
@@ -95,6 +95,7 @@
                 class="bg-white w-1/2 px-3"
                 type="text"
                 id="return-rate"
+                name="return-rate"
                 placeholder="0"
                 required
               />
@@ -106,9 +107,8 @@
                 <option value="yearly">Yearly</option>
               </select>
             </div>
-            <span class="text-red-600"></span>
           </div>
-          <div class="flex flex-col w-full px-3 h-[4.25rem]">
+          <div class="flex flex-col w-full px-3 min-h-[4.25rem]">
             <label class="font-bold text-gray-700" for="tax-rate"
               >Tax Over Profit</label
             >
@@ -129,7 +129,6 @@
                 required
               />
             </div>
-            <span class="text-red-600"></span>
           </div>
         </div>
       </form>
@@ -142,8 +141,7 @@
           Calculate
         </button>
         <button
-          class="bg-emerald-500 text-white w-1/3 rounded-md font-bold hover:bg-emerald-600 transition-all"
-        >
+          class="bg-emerald-500 text-white w-1/3 rounded-md font-bold hover:bg-emerald-600 transition-all" form="investment-form" type="reset" id="reset-btn">
           Clear
         </button>
       </div>
