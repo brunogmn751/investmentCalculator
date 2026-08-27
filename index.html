@@ -7,7 +7,7 @@
     <link href="./src/style.css" rel="stylesheet" />
     <script type="module" src="./src/main.js" defer></script>
   </head>
-  <body class="min-h-dvh grid grid-rows-2 grid-cols-3">
+  <body class="min-h-dvh h-dvh grid grid-rows-2 grid-cols-3">
     <aside
       class="row-span-2 bg-emerald-300 flex flex-col justify-around items-center"
     >
@@ -146,15 +146,15 @@
         </button>
       </div>
     </aside>
-    <main class="row-span-2 col-span-2 h-full">
-       <section id="charts-container">
-        <div class="h-[36dvh]">
-          <p>Resultado Final</p>
-          <canvas id="final-money-distribution"></canvas>
+    <main class="row-span-2 col-span-2">
+       <section id="charts-container" class="h-full">
+        <div class="h-5/12 flex flex-col items-center justify-center p-6">
+          <p class="font-bold text-lg ">Resultado Final</p>
+          <canvas id="final-money-distribution" class="max-h-full"></canvas>
         </div>
-        <div class="h-[56dvh]">
-          <p>Progressão</p>
-          <canvas id="progression"></canvas>
+        <div class="h-7/12 flex flex-col items-center justify-center p-6">
+          <p class="font-bold text-lg ">Progressão</p>
+          <canvas id="progression" class="max-h-full"></canvas>
         </div>
        </section>
     </main>
