@@ -23,6 +23,13 @@ function formatCurrency(value) {
   return value.toLocaleString("pt-br", {style:"currency", currency:"BRL"});
 }
 
+function resetTable(){
+  const table = document.getElementById('results-table');
+  if(table.children.length > 0){
+    table.replaceChildren();
+  }
+}
+
 function resetCharts() {
   if (doughnutChartReference && progressionChartReference){
     doughnutChartReference.destroy();
@@ -32,6 +39,7 @@ function resetCharts() {
 
 function renderProgression() {
   resetCharts();
+  resetTable();
 
   const startingAmount = Number(
     document.querySelector("#initial-investment").value.replace(",", "."),
@@ -163,6 +171,7 @@ resetBtn.addEventListener("click", () => {
     errorDiv.parentElement.querySelector("span").remove();
   }
   resetCharts();
+  resetTable();
 });
 
 // calculateBtn.addEventListener("click", renderProgression);
