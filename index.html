@@ -141,13 +141,17 @@
           Calculate
         </button>
         <button
-          class="bg-emerald-500 text-white w-1/3 rounded-md font-bold hover:bg-emerald-600 transition-all" form="investment-form" type="reset" id="reset-btn">
+          class="bg-emerald-500 text-white w-1/3 rounded-md font-bold hover:bg-emerald-600 transition-all"
+          form="investment-form"
+          type="reset"
+          id="reset-btn"
+        >
           Clear
         </button>
       </div>
     </aside>
     <main class="row-span-2 col-span-2">
-       <!-- <section id="charts-container" class="h-full">
+      <!-- <section id="charts-container" class="h-full">
         <div class="h-5/12 flex flex-col items-center justify-center p-6">
           <p class="font-bold text-lg ">Final Result</p>
           <canvas id="final-money-distribution" class="max-h-full"></canvas>
@@ -157,23 +161,13 @@
           <canvas id="progression" class="max-h-full"></canvas>
         </div>
        </section> -->
-       <section id="tables-container" class="h-full">
+      <section id="tables-container" class="h-full">
         <p class="font-bold text-lg text-center">Monthly Results</p>
-        <table class="w-full max-h-full border-1 border-separate">
-          <thead>
-            <th>Month</th>
-            <th>Returns</th>
-            <th>Invested Amount</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-center">0</td>
-              <td class="text-center">0</td>
-              <td class="text-center">10000</td>
-            </tr>
-          </tbody>
-        </table>
-       </section>
-      </main>
+        <table
+          id="results-table"
+          class="w-full max-h-full border-1 border-separate"
+        ></table>
+      </section>
+    </main>
   </body>
 </html>
