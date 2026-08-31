@@ -2,7 +2,6 @@ import { generateReturnsArray } from "./investmentGoals";
 import { Chart } from "chart.js/auto";
 import { createTable } from "./table.js";
 
-// const calculateBtn = document.getElementById("calculate-btn");
 const form = document.querySelector("#investment-form");
 const resetBtn = document.querySelector("#reset-btn");
 const finalMoneyChart = document.querySelector("#final-money-distribution");
@@ -11,29 +10,60 @@ const progressionChart = document.querySelector("#progression");
 let doughnutChartReference;
 let progressionChartReference;
 
+const mainEl = document.querySelector("main");
+const carouselEl = document.querySelector("#carousel");
+const nextBtn = document.querySelector("#slide-arrow-next");
+const prevBtn = document.querySelector("#slide-arrow-prev");
+
+nextBtn.addEventListener("click", () => {
+  carouselEl.scrollLeft += mainEl.clientWidth
+});
+prevBtn.addEventListener("click", () => {
+  carouselEl.scrollLeft -= mainEl.clientWidth
+});
+
 const columnsArray = [
-  {columnLabel: "Month", accessor: "month"},
-  {columnLabel: "Invested Amount", accessor: "investedAmount", format: (numberInfo) => formatCurrency(numberInfo)},
-  {columnLabel: "Monthly Returns", accessor: "interestReturns", format: (numberInfo) => formatCurrency(numberInfo)},
-  {columnLabel: "Total Returns", accessor: "totalInterestReturns", format: (numberInfo) => formatCurrency(numberInfo)},
-  {columnLabel: "Total Amount", accessor: "totalAmount", format: (numberInfo) => formatCurrency(numberInfo)}
-]
+  { columnLabel: "Month", accessor: "month" },
+  {
+    columnLabel: "Invested Amount",
+    accessor: "investedAmount",
+    format: (numberInfo) => formatCurrencyTable(numberInfo),
+  },
+  {
+    columnLabel: "Monthly Returns",
+    accessor: "interestReturns",
+    format: (numberInfo) => formatCurrencyTable(numberInfo),
+  },
+  {
+    columnLabel: "Total Returns",
+    accessor: "totalInterestReturns",
+    format: (numberInfo) => formatCurrencyTable(numberInfo),
+  },
+  {
+    columnLabel: "Total Amount",
+    accessor: "totalAmount",
+    format: (numberInfo) => formatCurrencyTable(numberInfo),
+  },
+];
 
 function formatCurrency(value) {
-  return value.toLocaleString("pt-br", {style:"currency", currency:"BRL"});
+  return value.toFixed(2);
+}
+function formatCurrencyTable(value) {
+  return value.toLocaleString("pt-br", { style: "currency", currency: "BRL" });
 }
 
-function resetTable(){
-  const table = document.getElementById('results-table');
-  if(table.children.length > 0){
+function resetTable() {
+  const table = document.getElementById("results-table");
+  if (table.children.length > 0) {
     table.replaceChildren();
   }
 }
 
 function resetCharts() {
-  if (doughnutChartReference && progressionChartReference){
+  if (doughnutChartReference && progressionChartReference) {
     doughnutChartReference.destroy();
-    progressionChartReference.destroy()
+    progressionChartReference.destroy();
   }
 }
 
@@ -67,71 +97,70 @@ function renderProgression() {
     returnRatePeriod,
   );
 
-
   const finalInvestmentObject = returnsArray[returnsArray.length - 1];
 
-  // doughnutChartReference = new Chart(finalMoneyChart, {
-  //   type: "doughnut",
-  //   data: {
-  //     labels: ["Invested Amount", "Returns", "Taxes"],
-  //     datasets: [
-  //       {
-  //         data: [
-  //           formatCurrency(finalInvestmentObject.investedAmount),
-  //           formatCurrency(
-  //             finalInvestmentObject.totalInterestReturns * (1 - taxRate),
-  //           ),
-  //           formatCurrency(
-  //             finalInvestmentObject.totalInterestReturns * taxRate,
-  //           ),
-  //         ],
-  //         backgroundColor: [
-  //           "rgb(54, 162, 235)",
-  //           "rgb(255, 99, 132)",
-  //           "rgb(255, 205, 86)",
-  //         ],
-  //         hoverOffset: 4,
-  //       },
-  //     ],
-  //   },
-  // });
+  doughnutChartReference = new Chart(finalMoneyChart, {
+    type: "doughnut",
+    data: {
+      labels: ["Invested Amount", "Returns", "Taxes"],
+      datasets: [
+        {
+          data: [
+            formatCurrency(finalInvestmentObject.investedAmount),
+            formatCurrency(
+              finalInvestmentObject.totalInterestReturns * (1 - taxRate),
+            ),
+            formatCurrency(
+              finalInvestmentObject.totalInterestReturns * taxRate,
+            ),
+          ],
+          backgroundColor: [
+            "rgb(54, 162, 235)",
+            "rgb(255, 99, 132)",
+            "rgb(255, 205, 86)",
+          ],
+          hoverOffset: 4,
+        },
+      ],
+    },
+  });
 
-  // progressionChartReference = new Chart(progressionChart, {
-  //   type: "bar",
-  //   data: {
-  //     labels: returnsArray.map((investmentObject) => investmentObject.month),
-  //     datasets: [
-  //       {
-  //         label: "Invested Amount",
-  //         backgroundColor: "rgb(54, 162, 235)",
-  //         data: returnsArray.map((investmentObject) =>
-  //           formatCurrency(investmentObject.investedAmount),
-  //         ),
-  //       },
-  //       {
-  //         label: "Returns",
-  //         backgroundColor: "rgb(255, 99, 132)",
-  //         data: returnsArray.map((investmentObject) =>
-  //           formatCurrency(investmentObject.intererestReturns),
-  //         ),
-  //       },
-  //     ],
-  //   },
-  //   options: {
-  //     responsive: true,
-  //     scales: {
-  //       x: {
-  //         stacked: true,
-  //       },
-  //       y: {
-  //         stacked: true,
-  //       },
-  //     },
-  //   },
-  // });
+  progressionChartReference = new Chart(progressionChart, {
+    type: "bar",
+    data: {
+      labels: returnsArray.map((investmentObject) => investmentObject.month),
+      datasets: [
+        {
+          label: "Invested Amount",
+          backgroundColor: "rgb(54, 162, 235)",
+          data: returnsArray.map((investmentObject) =>
+            formatCurrency(investmentObject.investedAmount),
+          ),
+        },
+        {
+          label: "Returns",
+          backgroundColor: "rgb(255, 99, 132)",
+          data: returnsArray.map((investmentObject) =>
+            formatCurrency(investmentObject.interestReturns),
+          ),
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          stacked: true,
+        },
+        y: {
+          stacked: true,
+        },
+      },
+    },
+  });
 
-  console.log(returnsArray)
-  createTable(columnsArray, returnsArray, "results-table")
+  console.log(returnsArray);
+  createTable(columnsArray, returnsArray, "results-table");
 }
 
 function validateInput(event) {
@@ -174,7 +203,6 @@ resetBtn.addEventListener("click", () => {
   resetTable();
 });
 
-// calculateBtn.addEventListener("click", renderProgression);
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
